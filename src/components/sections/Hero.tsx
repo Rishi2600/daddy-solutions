@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Section";
-import { DeployLog } from "@/components/ui/DeployLog";
+import { TerminalPanel } from "@/components/ui/TerminalPanel";
 import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
 import { proofPoints } from "@/lib/content";
@@ -9,7 +9,10 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
       {/* ambient background */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
         <div className="backdrop-grid absolute inset-0" />
         <div className="animate-drift absolute -top-40 left-1/2 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-brass/12 blur-[120px]" />
         <div className="absolute -top-10 right-[8%] h-72 w-72 rounded-full bg-violet/8 blur-[110px]" />
@@ -36,9 +39,9 @@ export function Hero() {
 
           <Reveal delay={160}>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-mute sm:text-xl">
-              End-to-end software development — web apps, APIs, databases, cloud and Solana.
-              One senior team takes it from a sketch on a call to a product in production,
-              then keeps it running.
+              End-to-end software development — web apps, APIs, databases, cloud
+              and Solana. One senior team takes it from a sketch on a call to a
+              product in production, then keeps it running.
             </p>
           </Reveal>
 
@@ -71,13 +74,15 @@ export function Hero() {
         </div>
 
         <Reveal delay={200} className="lg:pl-4">
-          <DeployLog />
+          <TerminalPanel />
 
-          <div className="hairline mt-4 flex items-center justify-between rounded-xl bg-ink-900/50 px-4 py-3 backdrop-blur">
+          <div className="hairline mt-3 flex items-center justify-between rounded-xl bg-ink-900/50 px-4 py-3 backdrop-blur">
             <span className="font-mono text-[0.7rem] tracking-wide text-mute">
               avg. time from brief → first demo
             </span>
-            <span className="font-display text-sm font-semibold text-brass">9 days</span>
+            <span className="font-display text-sm font-semibold text-brass">
+              9 days
+            </span>
           </div>
         </Reveal>
       </Container>
@@ -87,7 +92,10 @@ export function Hero() {
         <Reveal delay={120}>
           <dl className="hairline grid grid-cols-2 divide-bone/8 rounded-2xl bg-ink-900/40 backdrop-blur sm:grid-cols-4 sm:divide-x">
             {proofPoints.map((point) => (
-              <div key={point.label} className="px-6 py-6 text-center sm:text-left">
+              <div
+                key={point.label}
+                className="px-6 py-6 text-center sm:text-left"
+              >
                 <dt className="font-display text-2xl font-semibold tracking-tight text-bone sm:text-3xl">
                   {point.value}
                 </dt>

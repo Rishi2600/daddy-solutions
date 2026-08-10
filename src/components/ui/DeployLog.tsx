@@ -28,8 +28,10 @@ const toneClass: Record<NonNullable<Line["tone"]>, string> = {
 };
 
 /**
- * The page's signature moment: the site introduces itself the way the company
- * would — as a clean production deploy, printed line by line.
+ * The idle state of the hero terminal: the site introduces itself the way the
+ * company would — a clean production deploy, printed line by line. Rendered
+ * until the visitor takes over the shell, at which point TerminalPanel swaps
+ * in the real xterm.js session.
  */
 export function DeployLog({ className }: { className?: string }) {
   const [visible, setVisible] = useState(0);
@@ -58,45 +60,41 @@ export function DeployLog({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "hairline relative overflow-hidden rounded-2xl bg-ink-900/80 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)] backdrop-blur",
+        "px-4 py-5 font-mono text-[0.78rem] leading-7 sm:px-6 sm:text-[0.85rem]",
         className,
       )}
     >
-      {/* window chrome */}
-      <div className="flex items-center gap-2 border-b border-bone/8 px-4 py-3">
-        <span className="size-2.5 rounded-full bg-ink-600" />
-        <span className="size-2.5 rounded-full bg-ink-600" />
-        <span className="size-2.5 rounded-full bg-ink-600" />
-        <span className="ml-2 font-mono text-[0.7rem] tracking-wide text-mute">
-          production — daddy-cli
-        </span>
-      </div>
+      {lines.map((line, i) => {
+        const shown = i < visible;
+        return (
+          <div
+            key={line.text}
+            className={cn(
+              "flex gap-2 transition-opacity duration-300",
+              shown ? "opacity-100" : "opacity-0",
+              toneClass[line.tone ?? "dim"],
+            )}
+            aria-hidden={!shown}
+          >
+            <span className="select-none text-mute">
+              {line.tone === "prompt"
+                ? "$"
+                : line.tone === "note"
+                  ? " "
+                  : line.tone === "link"
+                    ? "\u2192"
+                    : "\u2713"}
+            </span>
+            <span className={cn(line.tone === "note" && "italic")}>
+              {line.text}
+            </span>
+          </div>
+        );
+      })}
 
-      <div className="px-4 py-5 font-mono text-[0.78rem] leading-7 sm:px-6 sm:text-[0.85rem]">
-        {lines.map((line, i) => {
-          const shown = i < visible;
-          return (
-            <div
-              key={line.text}
-              className={cn(
-                "flex gap-2 transition-opacity duration-300",
-                shown ? "opacity-100" : "opacity-0",
-                toneClass[line.tone ?? "dim"],
-              )}
-              aria-hidden={!shown}
-            >
-              <span className="select-none text-mute">
-                {line.tone === "prompt" ? "$" : line.tone === "note" ? " " : line.tone === "link" ? "→" : "✓"}
-              </span>
-              <span className={cn(line.tone === "note" && "italic")}>{line.text}</span>
-            </div>
-          );
-        })}
-
-        <div className="flex gap-2 text-mute">
-          <span className="select-none">$</span>
-          <span className="caret inline-block h-[1.05em] w-[0.55em] translate-y-[0.15em] bg-brass/80" />
-        </div>
+      <div className="flex gap-2 text-mute">
+        <span className="select-none">$</span>
+        <span className="caret inline-block h-[1.05em] w-[0.55em] translate-y-[0.15em] bg-brass/80" />
       </div>
     </div>
   );
