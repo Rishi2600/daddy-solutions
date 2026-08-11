@@ -20,7 +20,7 @@ export function Hero() {
       </div>
 
       <Container className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
-        <div>
+        <div className="min-w-0">
           <Reveal>
             <span className="hairline inline-flex items-center gap-2.5 rounded-full bg-ink-900/70 py-1.5 pr-4 pl-3 font-mono text-[0.7rem] tracking-wide text-bone-dim backdrop-blur">
               <span className="animate-pulse-dot size-1.5 rounded-full bg-mint" />
@@ -73,7 +73,7 @@ export function Hero() {
           </Reveal>
         </div>
 
-        <Reveal delay={200} className="lg:pl-4">
+        <Reveal delay={200} className="min-w-0 lg:pl-4">
           <TerminalPanel />
 
           <div className="hairline mt-3 flex items-center justify-between rounded-xl bg-ink-900/50 px-4 py-3 backdrop-blur">

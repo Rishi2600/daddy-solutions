@@ -78,7 +78,7 @@ export function TerminalPanel({ className }: { className?: string }) {
   }, []);
 
   return (
-    <div className={className}>
+    <div className={cn("w-full min-w-0", className)}>
       <div className="hairline relative overflow-hidden rounded-2xl bg-ink-900/80 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)] backdrop-blur">
         {/* window chrome */}
         <div className="flex items-center gap-2 border-b border-bone/8 px-4 py-3">
