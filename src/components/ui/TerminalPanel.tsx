@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 const LiveTerminal = dynamic(() => import("@/components/ui/LiveTerminal"), {
   ssr: false,
   loading: () => (
-    <div className="grid h-[19rem] place-items-center font-mono text-xs text-mute sm:h-[21rem]">
+    <div className="grid h-full place-items-center font-mono text-xs text-mute">
       booting shell…
     </div>
   ),
@@ -106,19 +106,24 @@ export function TerminalPanel({ className }: { className?: string }) {
           )}
         </div>
 
-        {live ? (
-          <LiveTerminal handleRef={terminal} onEffect={handleEffect} />
-        ) : (
-          <div className="relative">
-            <DeployLog />
-            <button
-              type="button"
-              onClick={() => setLive(true)}
-              aria-label="Start the interactive shell"
-              className="absolute inset-0 cursor-text"
-            />
-          </div>
-        )}
+        {/* Fixed viewport. Both states occupy this exact box, so the height is
+            reserved from first paint and activating the shell never reflows the
+            hero. overflow-hidden clips any sub-pixel canvas spill on either axis. */}
+        <div className="relative h-[19rem] overflow-hidden sm:h-[21rem]">
+          {live ? (
+            <LiveTerminal handleRef={terminal} onEffect={handleEffect} />
+          ) : (
+            <>
+              <DeployLog />
+              <button
+                type="button"
+                onClick={() => setLive(true)}
+                aria-label="Start the interactive shell"
+                className="absolute inset-0 cursor-text"
+              />
+            </>
+          )}
+        </div>
       </div>
 
       {/* Tap targets — discoverability on desktop, the whole interface on touch */}

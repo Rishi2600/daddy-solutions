@@ -283,7 +283,7 @@ export default function LiveTerminal({ handleRef, onEffect }: Props) {
   return (
     <div
       ref={hostRef}
-      className="h-[19rem] w-full px-2 py-3 sm:h-[21rem] sm:px-3"
+      className="h-full w-full overflow-hidden px-2 py-3 sm:px-3"
       aria-label="Daddy Solutions interactive shell"
     />
   );
