@@ -7,6 +7,8 @@ export type Service = {
   bullets: string[];
   icon: IconName;
   featured?: boolean;
+  /** Offered to select clients only; may be retired. Rendered with a "Limited" flag. */
+  temporary?: boolean;
 };
 
 export const services: Service[] = [
@@ -15,60 +17,131 @@ export const services: Service[] = [
     title: "Full-stack development",
     blurb:
       "One team owns the whole thing — interface, API, database, infrastructure. Nobody gets to say “that's the other guy's ticket.”",
-    bullets: ["Web apps & dashboards", "Marketplaces & portals", "Internal tools", "MVP → v2 → scale"],
+    bullets: [
+      "Web apps & dashboards",
+      "Marketplaces & portals",
+      "Internal tools",
+      "MVP → v2 → scale",
+    ],
     icon: "layers",
     featured: true,
   },
   {
     id: "backend",
     title: "Backend & APIs",
-    blurb: "Services that stay up when the traffic shows up. Boring, in the best possible way.",
-    bullets: ["REST, GraphQL, tRPC", "Auth, billing, webhooks", "Queues & background jobs"],
+    blurb:
+      "Services that stay up when the traffic shows up. Boring, in the best possible way.",
+    bullets: [
+      "REST, GraphQL, tRPC",
+      "Auth, billing, webhooks",
+      "Queues & background jobs",
+    ],
     icon: "server",
   },
   {
     id: "frontend",
     title: "Frontend engineering",
     blurb: "Interfaces that load fast, feel expensive, and actually convert.",
-    bullets: ["Next.js & React", "Design systems", "Accessibility & Core Web Vitals"],
+    bullets: [
+      "Next.js & React",
+      "Design systems",
+      "Accessibility & Core Web Vitals",
+    ],
     icon: "window",
   },
   {
     id: "database",
     title: "Database architecture",
     blurb: "Schemas built to survive your growth, not just your demo day.",
-    bullets: ["Postgres, MySQL, Mongo", "Modelling & migrations", "Indexing & query tuning"],
+    bullets: [
+      "Postgres, MySQL, Mongo",
+      "Modelling & migrations",
+      "Indexing & query tuning",
+    ],
     icon: "database",
   },
   {
     id: "devops",
     title: "Cloud & DevOps",
-    blurb: "CI/CD, infrastructure as code, real observability. Ship on Friday. Sleep on Friday.",
-    bullets: ["AWS, GCP, Vercel", "Docker & Kubernetes", "Monitoring & alerting"],
+    blurb:
+      "CI/CD, infrastructure as code, real observability. Ship on Friday. Sleep on Friday.",
+    bullets: [
+      "AWS, GCP, Vercel",
+      "Docker & Kubernetes",
+      "Monitoring & alerting",
+    ],
     icon: "cloud",
   },
   {
     id: "web3",
     title: "Solana & Web3",
     blurb: "On-chain work done by people who read the docs and the source.",
-    bullets: ["dApps & on-chain programs", "SPL tokens & NFTs", "Wallet integrations"],
+    bullets: [
+      "dApps & on-chain programs",
+      "SPL tokens & NFTs",
+      "Wallet integrations",
+    ],
     icon: "hexagon",
   },
   {
     id: "support",
     title: "Maintenance & support",
-    blurb: "We don't vanish at launch. We watch it, patch it, and pick up the phone.",
-    bullets: ["SLAs from 4 hours", "Dependency & security updates", "Uptime and incident response"],
+    blurb:
+      "We don't vanish at launch. We watch it, patch it, and pick up the phone.",
+    bullets: [
+      "SLAs from 4 hours",
+      "Dependency & security updates",
+      "Uptime and incident response",
+    ],
     icon: "lifebuoy",
   },
   {
     id: "custom",
     title: "Custom software",
-    blurb: "The thing that doesn't exist yet, because nobody has built it for your business.",
-    bullets: ["Automation & integrations", "Data pipelines", "AI features that ship"],
+    blurb:
+      "The thing that doesn't exist yet, because nobody has built it for your business.",
+    bullets: [
+      "Automation & integrations",
+      "Data pipelines",
+      "AI features that ship",
+    ],
     icon: "sparkle",
   },
+  {
+    id: "marketing",
+    title: "Digital marketing",
+    blurb:
+      "Campaigns, SEO and analytics for a handful of clients we already build for.",
+    bullets: ["SEO & content", "Paid & analytics", "Landing pages"],
+    icon: "megaphone",
+    temporary: true,
+  },
+  {
+    id: "crm",
+    title: "CRM setup",
+    blurb:
+      "Standing up and wiring a CRM into the rest of your stack, for select engagements.",
+    bullets: ["Setup & migration", "Pipeline automation", "Integrations"],
+    icon: "users",
+    temporary: true,
+  },
+  {
+    id: "design",
+    title: "Graphic design",
+    blurb:
+      "Brand and marketing visuals when a project needs them — offered case by case.",
+    bullets: ["Brand & identity", "Marketing assets", "Social creative"],
+    icon: "palette",
+    temporary: true,
+  },
 ];
+
+/** Permanent offerings — used for the footer's standing menu. */
+export const coreServices = services.filter((service) => !service.temporary);
+/** Offered to select clients only; may be retired. */
+export const temporaryServices = services.filter(
+  (service) => service.temporary,
+);
 
 export type Step = {
   n: string;
@@ -153,7 +226,13 @@ export const stackGroups = [
   {
     label: "Frontend",
     note: "Interface layer",
-    items: ["Tailwind CSS", "React Query", "Zustand", "Framer Motion", "Storybook"],
+    items: [
+      "Tailwind CSS",
+      "React Query",
+      "Zustand",
+      "Framer Motion",
+      "Storybook",
+    ],
   },
   {
     label: "Backend",
@@ -168,7 +247,15 @@ export const stackGroups = [
   {
     label: "Cloud & DevOps",
     note: "Where it runs",
-    items: ["AWS", "Vercel", "Docker", "Kubernetes", "Terraform", "GitHub Actions", "Grafana"],
+    items: [
+      "AWS",
+      "Vercel",
+      "Docker",
+      "Kubernetes",
+      "Terraform",
+      "GitHub Actions",
+      "Grafana",
+    ],
   },
   {
     label: "Web3",

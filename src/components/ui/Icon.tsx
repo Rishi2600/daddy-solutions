@@ -82,6 +82,29 @@ const paths = {
       <path d="m3.5 7 8.5 6 8.5-6" />
     </>
   ),
+  megaphone: (
+    <>
+      <path d="M4 10v4h3l9 4V6l-9 4H4Z" />
+      <path d="M18 9a3 3 0 0 1 0 6" />
+      <path d="M7 14v3a1.5 1.5 0 0 0 3 0v-2" />
+    </>
+  ),
+  users: (
+    <>
+      <circle cx="9" cy="8" r="3.2" />
+      <path d="M3.5 19a5.5 5.5 0 0 1 11 0" />
+      <path d="M16 5.2a3.2 3.2 0 0 1 0 5.6" />
+      <path d="M17.5 19a5.5 5.5 0 0 0-2.6-4.7" />
+    </>
+  ),
+  palette: (
+    <>
+      <path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-1 2-2 0-1.4-1-1.6-1-2.6 0-.8.7-1.4 1.5-1.4H17a4 4 0 0 0 4-4c0-4.4-4-8-9-8Z" />
+      <circle cx="7.5" cy="11" r="1" />
+      <circle cx="9.5" cy="7.5" r="1" />
+      <circle cx="14.5" cy="7.5" r="1" />
+    </>
+  ),
 } as const;
 
 export type IconName = keyof typeof paths;

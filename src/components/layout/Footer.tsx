@@ -1,6 +1,6 @@
 import { Container } from "@/components/ui/Section";
 import { Logo } from "@/components/ui/Logo";
-import { services } from "@/lib/content";
+import { coreServices } from "@/lib/content";
 import { site } from "@/lib/site";
 
 const company = [
@@ -19,8 +19,8 @@ export function Footer() {
           <div>
             <Logo />
             <p className="mt-5 max-w-xs text-[0.95rem] leading-relaxed text-mute">
-              End-to-end software development, cloud and Solana engineering. You bring the
-              idea — we build, ship and maintain the thing.
+              End-to-end software development, cloud and Solana engineering. You
+              bring the idea — we build, ship and maintain the thing.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {site.locations.map((location) => (
@@ -39,7 +39,7 @@ export function Footer() {
               Services
             </h2>
             <ul className="mt-5 space-y-2.5">
-              {services.map((service) => (
+              {coreServices.map((service) => (
                 <li key={service.id}>
                   <a
                     href="#services"
@@ -76,12 +76,18 @@ export function Footer() {
             </h2>
             <ul className="mt-5 space-y-2.5 text-[0.92rem]">
               <li>
-                <a href={`mailto:${site.contact.email}`} className="text-brass hover:underline">
+                <a
+                  href={`mailto:${site.contact.email}`}
+                  className="text-brass hover:underline"
+                >
                   {site.contact.email}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${site.contact.sales}`} className="text-mute hover:text-bone">
+                <a
+                  href={`mailto:${site.contact.sales}`}
+                  className="text-mute hover:text-bone"
+                >
                   {site.contact.sales}
                 </a>
               </li>
@@ -112,7 +118,8 @@ export function Footer() {
             © {new Date().getFullYear()} {site.legalName}. All rights reserved.
           </p>
           <p className="font-mono text-[0.72rem] text-mute/70">
-            Yes, we chose the name on purpose. No, it doesn&rsquo;t affect the uptime.
+            Yes, we chose the name on purpose. No, it doesn&rsquo;t affect the
+            uptime.
           </p>
         </div>
       </Container>
